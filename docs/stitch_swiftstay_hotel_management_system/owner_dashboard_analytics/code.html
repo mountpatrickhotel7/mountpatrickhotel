@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Owner Dashboard | Majestic Reserve</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#5d420f",
+                      "primary": "#000000",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "surface-variant": "#d3e4fe",
+                      "secondary-container": "#fdd494",
+                      "secondary-fixed-dim": "#e8c182",
+                      "secondary": "#775925",
+                      "on-primary-container": "#7c839b",
+                      "tertiary-container": "#191c1e",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#cbdbf5",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "on-background": "#0b1c30",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-high": "#dce9ff",
+                      "primary-fixed": "#dae2fd",
+                      "on-tertiary-container": "#818486",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c6c6cd",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-primary": "#bec6e0",
+                      "outline": "#76777d",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "tertiary": "#000000",
+                      "on-primary-fixed": "#131b2e",
+                      "on-tertiary-fixed": "#191c1e",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed": "#ffdeab",
+                      "background": "#f8f9ff",
+                      "on-secondary-container": "#785a26",
+                      "surface-tint": "#565e74",
+                      "on-surface": "#0b1c30",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-secondary-fixed": "#281900",
+                      "on-surface-variant": "#45464d",
+                      "tertiary-fixed": "#e0e3e5",
+                      "surface-container": "#e5eeff",
+                      "surface": "#f8f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "stack-lg": "40px",
+                      "gutter": "24px",
+                      "stack-md": "16px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "stack-sm": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "body-md": ["Inter"],
+                      "caption": ["Inter"],
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "headline-sm": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar Anchor -->
+<aside class="bg-white dark:bg-primary-container fixed left-0 top-0 h-full w-[280px] shadow-md flex flex-col p-stack-md gap-stack-md z-40 hidden md:flex">
+<div class="mb-stack-lg">
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed mb-1">Admin Portal</h1>
+<p class="font-caption text-on-surface-variant/70 uppercase tracking-widest">Majestic Reserve</p>
+</div>
+<nav class="flex-grow flex flex-col gap-1">
+<!-- Active Tab: Dashboard -->
+<a class="bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-3 p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="bed">bed</span>
+<span class="font-body-md">Room Management</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-md">Bookings</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<button class="bg-primary text-on-primary py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all font-label-md mb-stack-md">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            Add New Room
+        </button>
+<div class="border-t border-outline-variant pt-stack-md">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container flex items-center gap-3 p-3 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md">Help Center</span>
+</a>
+<div class="flex items-center gap-3 p-3 mt-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a luxury hotel manager in a sharp navy suit, looking confident and welcoming. The lighting is soft and corporate, with a blurred minimalist office background that matches the quiet luxury aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRXy05lFbMttFvjvzusG24QuEib0tTMwhcwOWMqiniW8j2zb006hv0fmzRqG8gkbw0VbYhwZfyAO-v0hA5xD_6PpqWKrXk9nxOQjQF1sLOT2dcOeG7VKFqBtfnxnXjvm-Gv-64tVler_9DYL_jbT1BU9cOOTS5ufEqzppCnt1DgKCJNop83ghDS66gcj3lQIzOznWK-P_rUX3a903BuVfoGLo5B6PnwZXQVeddKRoyS-X4MdYvyiKGvqC-TgW8bbgq5H-mAZvWU0Q"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Alex Mercer</p>
+<p class="text-caption text-on-surface-variant">General Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-grow md:ml-[280px] p-margin-mobile md:p-margin-desktop min-w-0">
+<!-- Header -->
+<header class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Estate Overview</h2>
+<p class="text-body-md text-on-surface-variant">Welcome back, Alex. Here’s what’s happening today at Majestic Reserve.</p>
+</div>
+<div class="hidden md:flex gap-gutter">
+<div class="text-right">
+<p class="text-caption font-label-md text-on-surface-variant uppercase tracking-wider">Local Time</p>
+<p class="font-body-lg text-primary" id="current-time">10:45 AM</p>
+</div>
+<div class="text-right">
+<p class="text-caption font-label-md text-on-surface-variant uppercase tracking-wider">Property Status</p>
+<div class="flex items-center gap-2 text-secondary font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        Fully Operational
+                    </div>
+</div>
+</div>
+</header>
+<!-- Top Stats Cards: Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Revenue Card -->
+<div class="glass-card p-6 rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] hover:shadow-lg transition-shadow border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+</div>
+<span class="text-caption font-label-md text-green-600 bg-green-50 px-2 py-1 rounded-full">+12.4%</span>
+</div>
+<p class="text-caption font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Revenue</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">$142,850.00</h3>
+<p class="text-caption text-on-surface-variant mt-2">vs. $127,100.00 last month</p>
+</div>
+<!-- Bookings Card -->
+<div class="glass-card p-6 rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] hover:shadow-lg transition-shadow border-l-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="book_online">book_online</span>
+</div>
+<span class="text-caption font-label-md text-green-600 bg-green-50 px-2 py-1 rounded-full">+5.2%</span>
+</div>
+<p class="text-caption font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Bookings</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">1,248</h3>
+<p class="text-caption text-on-surface-variant mt-2">18 new since yesterday</p>
+</div>
+<!-- Occupancy Card -->
+<div class="glass-card p-6 rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] hover:shadow-lg transition-shadow border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="bedroom_parent">bedroom_parent</span>
+</div>
+<span class="text-caption font-label-md text-on-surface-variant bg-surface-container px-2 py-1 rounded-full">Steady</span>
+</div>
+<p class="text-caption font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Occupancy Rate</p>
+<h3 class="font-headline-sm text-headline-sm text-primary">94.2%</h3>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-4">
+<div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div>
+</div>
+</div>
+</section>
+<!-- Analytics & Reservations Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Analytics Chart Area -->
+<section class="lg:col-span-2 glass-card p-gutter rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-on-surface">Revenue Trends</h4>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-caption font-label-md bg-surface-container text-on-surface rounded-lg">Weekly</button>
+<button class="px-3 py-1 text-caption font-label-md bg-primary text-on-primary rounded-lg">Monthly</button>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="relative flex-grow min-h-[300px] flex items-end justify-between gap-4 pt-10">
+<!-- Simple CSS bar chart as visualization -->
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 40%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Jan: $12k</div>
+</div>
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 55%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Feb: $18k</div>
+</div>
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 48%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Mar: $15k</div>
+</div>
+<div class="group relative flex-grow bg-secondary rounded-t-lg" style="height: 75%">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Apr: $24k</div>
+</div>
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 60%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">May: $20k</div>
+</div>
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 85%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Jun: $28k</div>
+</div>
+<div class="group relative flex-grow bg-surface-container-high hover:bg-secondary-container transition-colors rounded-t-lg" style="height: 92%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded">Jul: $31k</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-caption text-on-surface-variant font-label-md px-2">
+<span>JAN</span><span>FEB</span><span>MAR</span><span class="text-secondary">APR</span><span>MAY</span><span>JUN</span><span>JUL</span>
+</div>
+</section>
+<!-- Current Occupancy List -->
+<section class="lg:col-span-1 glass-card rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h4 class="font-headline-sm text-on-surface text-[20px]">Live Status</h4>
+<span class="p-1 px-3 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">Active Now</span>
+</div>
+<div class="flex-grow overflow-y-auto custom-scrollbar max-h-[400px]">
+<!-- Reservation Item -->
+<div class="p-4 hover:bg-surface-container transition-colors border-b border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-end portrait of a sophisticated woman traveler in her 30s, wearing linen clothing, smiling warmly. Professional lighting, shallow depth of field, minimalist luxury aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRdItfm6hYKIb0q0fz_bRVWyfAGNdSn4WCkGvTHUOEZfgZApOfBsN6j_ebZkKJv5W_Dy2zDGk9n_wDQAsu8vkpp7xQeLZVwgHFIsZ-Tem71AJGL_jEQzTJ2pE_n2uqtmB0N9SELzsEtIMV_-EbR_1VghT-roDpbRh4mT3NuVM3bhka0Q5BPOTdY5Iun9Ey-OwT4OynqiRJq9VweoK1om7MqmSXCdspCPG3YYLzykDAPPtfMU_VFuOFmr3lOF1Q__gea0PO25LZdQo"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-on-surface">Elena Rodriguez</p>
+<p class="text-caption text-on-surface-variant">Suite 402 • Check-out 14 Oct</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40" data-icon="more_vert">more_vert</span>
+</div>
+<!-- Reservation Item -->
+<div class="p-4 hover:bg-surface-container transition-colors border-b border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of an executive male traveler in a casual luxury blazer, silver hair, looking thoughtful and successful. Soft sunlight, modern hotel lobby background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGkYw7Kh2qUOEY56B0svdwJ7cq9y84YDUIZaY0z3h_JSz_hMSmr5pvRsgQjapzuCm3qih61vIh2WlWfHnfMoIs3TkaoV7BaJtc8ecEmMah7Vrk1i9gKysz-yRbcMOU0SOFvq0nm7av6xFyZdbH-IFUuH7zX8Jy393YHtPCQZlHfzzUjADm-eUAbldLGbfMMRGFkBgt1DJ8laPiBi04i2-Xv27to5EvGZQTkRQj4GQ_wA2dHRvQ6DxgDXsN0_qMYmAy9HtsHkNXJs0"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-on-surface">Julian Vane</p>
+<p class="text-caption text-on-surface-variant">Deluxe 108 • Check-out 12 Oct</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40" data-icon="more_vert">more_vert</span>
+</div>
+<!-- Reservation Item -->
+<div class="p-4 hover:bg-surface-container transition-colors border-b border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A candid style portrait of a young couple, stylish and affluent, laughing together. High-quality photography, bright and airy light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdgpHOVfbzvr0sK9jpXgOzBazeLefloDSPDXc6O8tk8IRt-PGud-iYhSebEuUIyGeNlq4guJMQoyDs12VXahLAQDow_5UcVu9PQwzboEr7Y9vdPzOMgXu04dt4GWJBm0RlFLF0b7lyjVLNrvhpR9MPjbY-fljRwTe8mhohvhC6td3DrXh3RP_qAOkcF1xEKJzA8uuwirGHDTUzy8K-8tg_rXN_7kuoxeA4TSRhCfSUU-bNkPcq-4w3TXBuQ0KSLmhpxYJvoB3X-bQ"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-on-surface">The Smiths</p>
+<p class="text-caption text-on-surface-variant">Penthouse • Check-out 16 Oct</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40" data-icon="more_vert">more_vert</span>
+</div>
+<!-- Reservation Item -->
+<div class="p-4 hover:bg-surface-container transition-colors flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A refined portrait of a business woman in her 40s, elegant and powerful. Studio lighting with warm tones, luxurious and professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSydnBXsZkocM8hIWa3nlyqw4emFlD2kqGN3npCHPHxGrmF1rvvES1Jec4OBA2pRwSwj-BBNdZcexU8Jk1dngtvttzXxH3vsoQM50sKy6bVplZsl8o4-6ZWFfehvdqeOPnVexoxW4mon0032yTh0yuc1pXQkO3a3G81qCU0ld_S5M0VW1xIU5Xrb2rN859PtNdIByFqRSpzjSfuQRyDOb1DJ1WHAIoBwIj9KoAQPd_fXuLrKljvCE03NVf3i47H6DlfsE-fOYszSM"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-on-surface">Sarah Jenkins</p>
+<p class="text-caption text-on-surface-variant">Superior 204 • Check-out 11 Oct</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<a class="p-4 bg-surface-container text-center font-label-md text-primary hover:bg-surface-container-high transition-colors" href="#">
+                    View All Reservations
+                </a>
+</section>
+</div>
+<!-- Reports Section -->
+<section class="glass-card p-gutter rounded-2xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border-t-4 border-secondary">
+<div class="flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="text-center md:text-left">
+<h4 class="font-headline-sm text-on-surface mb-2">Generate Reports</h4>
+<p class="text-body-md text-on-surface-variant">Export detailed analytics and property performance data for your records.</p>
+</div>
+<div class="flex flex-wrap gap-4 justify-center">
+<button class="bg-primary text-on-primary py-3 px-6 rounded-xl flex items-center gap-3 hover:opacity-90 transition-transform active:scale-95 font-label-md">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+                        Generate Daily Report (PDF)
+                    </button>
+<button class="border border-primary text-primary py-3 px-6 rounded-xl flex items-center gap-3 hover:bg-surface-container transition-transform active:scale-95 font-label-md">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                        Generate Monthly Report
+                    </button>
+</div>
+</div>
+</section>
+<!-- Footer (Admin Context) -->
+<footer class="mt-stack-lg pt-stack-md border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 text-caption text-on-surface-variant">
+<p>© 2024 Majestic Reserve. Proprietary Management Portal.</p>
+<div class="flex gap-stack-md">
+<a class="hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+<a class="hover:text-primary transition-colors" href="#">System Health</a>
+<a class="hover:text-primary transition-colors" href="#">Log Out</a>
+</div>
+</footer>
+</main>
+<!-- Mobile Navigation Shell (Suppressed as per task focus, but kept hidden structural reference if needed for responsive) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.05)] flex justify-around p-4 z-50">
+<a class="flex flex-col items-center gap-1 text-secondary" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dash</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="bed">bed</span>
+<span class="text-[10px]">Rooms</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[10px]">Reports</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px]">Set</span>
+</a>
+</div>
+<script>
+        // Simple Micro-interaction for current time
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            document.getElementById('current-time').textContent = timeStr;
+        }
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // Reveal effect for dashboard cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease-out';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

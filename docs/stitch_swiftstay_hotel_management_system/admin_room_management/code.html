@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Room Management | Majestic Reserve</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#5d420f",
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-container": "#fdd494",
+                    "secondary-fixed-dim": "#e8c182",
+                    "secondary": "#775925",
+                    "on-primary-container": "#7c839b",
+                    "tertiary-container": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cbdbf5",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#131b2e",
+                    "on-background": "#0b1c30",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-high": "#dce9ff",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-container": "#818486",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#bec6e0",
+                    "outline": "#76777d",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "tertiary": "#000000",
+                    "on-primary-fixed": "#131b2e",
+                    "on-tertiary-fixed": "#191c1e",
+                    "inverse-surface": "#213145",
+                    "secondary-fixed": "#ffdeab",
+                    "background": "#f8f9ff",
+                    "on-secondary-container": "#785a26",
+                    "surface-tint": "#565e74",
+                    "on-surface": "#0b1c30",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed": "#281900",
+                    "on-surface-variant": "#45464d",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-container": "#e5eeff",
+                    "surface": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "stack-lg": "40px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        /* Custom scrollbar for Admin feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d3e4fe; border-radius: 10px; }
+        
+        .ambient-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<div class="flex min-h-screen">
+<!-- SIDE NAVBAR (Anchor: Admin Portal) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-white dark:bg-primary-container shadow-md flex flex-col p-stack-md gap-stack-md z-50 overflow-y-auto">
+<div class="mb-stack-lg px-2">
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed font-bold">Admin Portal</h1>
+<p class="font-caption text-on-surface-variant opacity-70">Majestic Reserve</p>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<!-- Navigation Items -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<!-- ACTIVE TAB: Room Management -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold group" href="#">
+<span class="material-symbols-outlined" data-icon="bed" style="font-variation-settings: 'FILL' 1;">bed</span>
+<span class="font-label-md">Room Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-stack-md border-t border-outline-variant/30 flex flex-col gap-2">
+<button class="bg-secondary text-on-secondary py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                    Add New Room
+                </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md">Help Center</span>
+</a>
+<div class="flex items-center gap-3 px-4 py-3 mt-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a luxury hotel administrator in a dark tailored suit, captured in a brightly lit modern office with marble surfaces and soft gold accents. The lighting is sophisticated, emphasizing high-end corporate elegance and clean light-mode aesthetics. The mood is reliable, calm, and prestigious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-hzEdL7wPvhbvW-4zvRKxXJ2W-tYuuWvCyx0rRSR5n02qJu51P9Olo02n9xg0dpqciitm-VQQQOiUOqfe9LaHnYlKGzkajsG23wteEtMQ5kCHB8PzupLTyB0D86yHoQlgZFl3m1C8dXSyODlkYQD1KfzZb2S9Gp3KPi-Brn9-dzTX2monklL1sPLZfD7D70O0h_GcYFbzqMJ59GUtBzfS72iW_G6qNkzbalDURm0xVNHj_Q2yG8EUHQ71SsUBoO8FoSwaZw2wEcs"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-primary">Alex Sterling</span>
+<span class="font-caption text-on-surface-variant">Chief Manager</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="flex-1 ml-[280px] p-margin-desktop bg-background">
+<header class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary mb-2">Room Inventory</h2>
+<p class="font-body-lg text-on-surface-variant">Manage and monitor your luxury accommodations in real-time.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="text-right">
+<p class="font-label-md text-secondary">Operational Status</p>
+<p class="font-body-md font-bold text-primary">94% Occupancy</p>
+</div>
+<div class="w-[1px] h-10 bg-outline-variant mx-2"></div>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- FILTERS & SEARCH -->
+<section class="mb-stack-md flex flex-wrap gap-stack-md items-center justify-between p-stack-md bg-white rounded-xl ambient-shadow">
+<div class="flex items-center gap-stack-md flex-1 min-w-[300px]">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-0 transition-all font-body-md text-on-surface bg-surface-bright" placeholder="Search room number or type..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-3 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors font-label-md">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                        Filters
+                    </button>
+</div>
+<div class="flex items-center gap-stack-sm bg-surface-container p-1 rounded-lg">
+<button class="px-4 py-2 bg-white rounded-md shadow-sm font-label-md text-primary">All Rooms</button>
+<button class="px-4 py-2 hover:bg-white/50 rounded-md font-label-md text-on-surface-variant transition-all">Available</button>
+<button class="px-4 py-2 hover:bg-white/50 rounded-md font-label-md text-on-surface-variant transition-all">Occupied</button>
+<button class="px-4 py-2 hover:bg-white/50 rounded-md font-label-md text-on-surface-variant transition-all">Maintenance</button>
+</div>
+</section>
+<!-- ROOM TABLE -->
+<div class="bg-white rounded-xl ambient-shadow overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="px-gutter py-stack-md font-label-md text-on-surface-variant uppercase tracking-wider">Room Info</th>
+<th class="px-gutter py-stack-md font-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-gutter py-stack-md font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-gutter py-stack-md font-label-md text-on-surface-variant uppercase tracking-wider">Rate/Night</th>
+<th class="px-gutter py-stack-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Room Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A wide-angle professional shot of a modern luxury hotel room with floor-to-ceiling windows overlooking a cityscape at sunset. The interior features deep navy velvet accents, gold lighting fixtures, and crisp white linens. Minimalist luxury aesthetic with soft, warm ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8hp5OzrWTipq7O-wyKG9kxJw575yR38pqxM2tjxuYQr6tN8jYPtC3Hjis8Y2GkmqaMLh0ncLPRGY1cK-tnLnWQULI_PIbGa8is13g9f-OQcRiUWXr58yeNRc_ZYGJyc7kBZre9j_A6lnXkt6pmgYT1NWeOuwBB8e2_W4zg8sLRCKYiCtDSp9uh-b8_DeyopxQCKovwHIC5w471PjL6tjhejDxU-c8q1JnnWpghDNdFZp2bMMrSjRVjlZ9H3oCYERw56-5wuer2WM"/>
+</div>
+<div>
+<p class="font-bold text-primary">Suite 402</p>
+<p class="font-caption text-on-surface-variant">Floor 4 • Garden View</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md">Presidential Suite</span>
+</td>
+<td class="px-gutter py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold bg-green-100 text-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                    Available
+                                </span>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md font-bold text-secondary">$1,250</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-outline transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Room Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A detailed shot of a luxury boutique hotel bedroom featuring a dark wood headboard, subtle gold wall sconces, and a minimalist gray palette. Large windows let in bright, soft daylight, creating a clean and airy light-mode environment. Premium materials and textiles are evident." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFFO3l1nl-2mABzTBKXYMflxniOdp0hdFzAXtcf3GDNr1ewW99cTwGd3sXS8tRfkvdtmUudr0OoiV5xAV5eKpZcutHc-dZkvWuUCdr69py0cmvhIK2LzlkmqIG4SnnDBU8WOIvFfiT0kKMZ83cV3rsQ_BitudCT1fabZJ8fFuC-c6LqGafv3sL8fUYm9KHU04hIZ9jigI1wWNslzQ_C1vwWFY6XOhGkOMs_3_A_9kGGtc0gMBiV1wJFe7asjKlogN753XkStHeHik"/>
+</div>
+<div>
+<p class="font-bold text-primary">Room 215</p>
+<p class="font-caption text-on-surface-variant">Floor 2 • City View</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md">Deluxe King</span>
+</td>
+<td class="px-gutter py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold bg-orange-100 text-orange-800">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                                    Occupied
+                                </span>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md font-bold text-secondary">$450</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-outline transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Room Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A high-end modern bathroom interior in a luxury hotel, showcasing marble countertops, a freestanding tub, and gold-finish fixtures. The space is illuminated by soft, natural light, emphasizing the pristine white and light-gray tonal minimalism. The mood is serene, clean, and exclusive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMP2cBMsFd6HKL7mq4NXV1NVAh4dY2XXqefcGPlkcA0WVmj33zHwMoG6q6zR_LNOuLcwXDdHEXwmc7q1RWdfxPVUr8N7UCroNZVJuD4GwqcNUO9A5S3CZagmie4sMAEv0PTiCB3i1nsOfO2qydiOg_bBAFN3bxRSAi0cW8GElGAFw1sP5SQomBdCdlGu9Xa7WwDpcDnwWh2_Dhw2pGrBlq-JJiiS6V4bSeWJ6L6z3qmN-1MUcgpSRki41eeplUYn9VF0ztmxHKJzk"/>
+</div>
+<div>
+<p class="font-bold text-primary">Room 108</p>
+<p class="font-caption text-on-surface-variant">Floor 1 • Poolside</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md">Superior Queen</span>
+</td>
+<td class="px-gutter py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold bg-gray-100 text-gray-800">
+<span class="w-1.5 h-1.5 rounded-full bg-gray-600"></span>
+                                    Maintenance
+                                </span>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md font-bold text-secondary">$320</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-outline transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Room Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-gutter py-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Interior of a luxury executive suite living room, featuring designer furniture in beige and slate blue. A minimalist marble coffee table holds a glass vase with fresh flowers. Large windows reveal a bright, clear sky. Modern corporate aesthetic with sophisticated tonal minimalism and high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrgnEOGVBOMZx58rE_t_lrYYvarq1bDSzdbj5ArXa0Q4lTm9_ygFFIYkABBlBHccFefWAFDtSeE0xmZn1pckOXRj7i42U7UQytXfG0jLPb7FpNBGEnCldeCYlXG2-U24oYj9WiVSl63qrDLiPZPFxpbTiXq3XbnKDe8srskqaL1fengLEjNdf8ze7u7p3BHYB2zk0LOXebH_EPhu-h9UHLUjBPU2tKjZkhqLomhFh9MML0iTJkvlRK66rQunY69-7de7WiiMRUx2g"/>
+</div>
+<div>
+<p class="font-bold text-primary">Suite 501</p>
+<p class="font-caption text-on-surface-variant">Floor 5 • Panorama View</p>
+</div>
+</div>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md">Penthouse</span>
+</td>
+<td class="px-gutter py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold bg-green-100 text-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                    Available
+                                </span>
+</td>
+<td class="px-gutter py-6">
+<span class="font-body-md font-bold text-secondary">$2,800</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-outline transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- PAGINATION -->
+<div class="px-gutter py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<p class="font-caption text-on-surface-variant">Showing 1-4 of 48 rooms</p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded hover:bg-surface-container disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-white font-label-md">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container font-label-md">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container font-label-md">3</button>
+<button class="p-2 rounded hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- QUICK STATS BENTO -->
+<section class="mt-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-gutter rounded-xl ambient-shadow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-[32px]" data-icon="cleaning_services">cleaning_services</span>
+<span class="px-2 py-1 bg-surface-container-high rounded-md text-[10px] font-bold uppercase tracking-tight">Today</span>
+</div>
+<p class="font-headline-sm text-headline-sm mt-2">12 Rooms</p>
+<p class="font-body-md text-on-surface-variant">Due for housekeeping</p>
+</div>
+<div class="bg-white p-gutter rounded-xl ambient-shadow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-[32px]" data-icon="pending_actions">pending_actions</span>
+<span class="px-2 py-1 bg-surface-container-high rounded-md text-[10px] font-bold uppercase tracking-tight">System</span>
+</div>
+<p class="font-headline-sm text-headline-sm mt-2">5 Maintenance</p>
+<p class="font-body-md text-on-surface-variant">Pending work orders</p>
+</div>
+<div class="bg-white p-gutter rounded-xl ambient-shadow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-[32px]" data-icon="payments">payments</span>
+<span class="px-2 py-1 bg-surface-container-high rounded-md text-[10px] font-bold uppercase tracking-tight">Yield</span>
+</div>
+<p class="font-headline-sm text-headline-sm mt-2">$42,850</p>
+<p class="font-body-md text-on-surface-variant">Projected weekly revenue</p>
+</div>
+</section>
+</main>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ripple-like effect for primary buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', function(e) {
+                    this.classList.add('scale-95');
+                });
+                btn.addEventListener('mouseup', function(e) {
+                    this.classList.remove('scale-95');
+                });
+                btn.addEventListener('mouseleave', function(e) {
+                    this.classList.remove('scale-95');
+                });
+            });
+
+            // Interactive Search Focus
+            const searchInput = document.querySelector('input[type="text"]');
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-secondary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-secondary/20');
+            });
+        });
+    </script>
+</body></html>

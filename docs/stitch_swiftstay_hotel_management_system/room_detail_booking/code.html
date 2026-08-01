@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luxury Suite | Majestic Reserve</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+        .modal-shadow {
+            box-shadow: 0px 12px 40px rgba(15, 23, 42, 0.12);
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .zoom-effect:hover img {
+            transform: scale(1.05);
+        }
+        input:focus {
+            outline: none;
+            border-color: #000000 !important;
+            border-width: 2px !important;
+        }
+        /* Custom scrollbar for a luxury feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f9ff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d3e4fe;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#5d420f",
+                      "primary": "#000000",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "surface-variant": "#d3e4fe",
+                      "secondary-container": "#fdd494",
+                      "secondary-fixed-dim": "#e8c182",
+                      "secondary": "#775925",
+                      "on-primary-container": "#7c839b",
+                      "tertiary-container": "#191c1e",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#cbdbf5",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "on-background": "#0b1c30",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-high": "#dce9ff",
+                      "primary-fixed": "#dae2fd",
+                      "on-tertiary-container": "#818486",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c6c6cd",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-primary": "#bec6e0",
+                      "outline": "#76777d",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "tertiary": "#000000",
+                      "on-primary-fixed": "#131b2e",
+                      "on-tertiary-fixed": "#191c1e",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed": "#ffdeab",
+                      "background": "#f8f9ff",
+                      "on-secondary-container": "#785a26",
+                      "surface-tint": "#565e74",
+                      "on-surface": "#0b1c30",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-secondary-fixed": "#281900",
+                      "on-surface-variant": "#45464d",
+                      "tertiary-fixed": "#e0e3e5",
+                      "surface-container": "#e5eeff",
+                      "surface": "#f8f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "stack-lg": "40px",
+                      "gutter": "24px",
+                      "stack-md": "16px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "stack-sm": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "body-md": ["Inter"],
+                      "caption": ["Inter"],
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"],
+                      "headline-sm": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-sm h-20">
+<div class="flex justify-between items-center px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-display-lg text-headline-sm font-bold text-primary dark:text-primary-fixed">Majestic Reserve</span>
+<div class="hidden md:flex gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-secondary font-bold pb-1 font-body-md text-body-md" href="#">Rooms</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="hidden md:block px-6 py-2 text-primary font-label-md text-label-md transition-all scale-95 active:scale-90">Login</button>
+<button class="bg-secondary text-on-secondary px-8 py-3 font-label-md text-label-md uppercase tracking-wider luxury-shadow transition-all hover:opacity-80 scale-95 active:scale-90">Book Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Gallery Section (Bento Style) -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[600px] rounded-xl overflow-hidden luxury-shadow">
+<div class="md:col-span-2 md:row-span-2 relative zoom-effect overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A grand luxury hotel suite with a floor-to-ceiling window overlooking a pristine coastline at sunset. The interior features high-end minimalist furniture in navy and gold accents, soft ambient lighting from designer lamps, and a plush king-sized bed with white silk linens. The architectural style is modern luxury with clean lines and warm wooden floors, reflecting a quiet, exclusive atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjrcTr-hvIXg7okgTBsOIGIOB-X7dn33p1QTlciB4uwX_t1x8KY1aiOj0rB7mnDPHmzIHexoPPO1-R3vtkwuAtxx1pzDl6EhmTETmQk1i_06AGHDbXKjq_cVDAMHy_QkcFZ2zuQxaKav7G78RutX036zE982bpI0gPDTpZhFLl_U7Qnn6DqJYX4ZJasW3SBVbl2u93pWwBNgnAxO3JpFdHs8FUqAoTVlR6X6Lzom9QynScXLT9Kd_PrlPp52MAvxs-DPQ9MdQlV30"/>
+<div class="absolute bottom-6 left-6 bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg border border-white/30 text-white font-label-md">Main Bedroom</div>
+</div>
+<div class="relative zoom-effect overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A spacious marble bathroom in a luxury resort featuring a deep freestanding soaking tub and dual gold faucets. Soft morning light filters through sheer curtains, creating a serene spa-like environment. The aesthetic is monochromatic white and grey marble with gold hardware, embodying the 'Quiet Luxury' theme through high-quality materials and breathable space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgANLV7_TIMlMkZ-jKwjhUflNGPdut9I489UMJndNNVzjsDU0K0AweeNxlBnDw2yfn35kVtX4vlCT5ZbapvchAwsxC2ka6HGsy0b5M6rfntLY-g8vMdrk9qoYb5Q8QSF1JvqQlIUDbaDfaO2o6c1Snw3d08VpbFPj-O506TG8oYKVfA2CD4UWB3BRYBRzT6NlNxAUusIhFRTPj0KBdVa8yAa-W8qbgKfueDAxINmaXmjgCWSiKVoUCJQ2SriGmcv5gjCPlH7DKxuA"/>
+</div>
+<div class="relative zoom-effect overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A private balcony of a high-end luxury suite featuring elegant outdoor lounge chairs and a small breakfast table. The view shows a crystal-clear turquoise infinity pool merging with the ocean horizon. The lighting is bright and airy, emphasizing a high-touch concierge service vibe and ultimate relaxation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6y0g3yMKh3XhzK1-pzL2M0pPMCO1QKsFQnjBW6X5QTYAzw3SckUxxHSV0PHpf-L1HiZwgLZHF7abGRSlkO-3yFE-keX_Ev5gMkTLt1MJW2JCz58ieXbQtLL6ZsSaMwo7xQWq58LDfm8lWMnoN6B6aJmIOTzK7zWKqttqBbfWcrmYz-vSoKI_wowLMI6rJaqODnIUivtiGRYI65MbjAjT0Ck7T4zvsRBSpNF-oCwRHE3eHUbOZgbCZVH8uNz9_euA0LQOgfltVmpE"/>
+</div>
+<div class="relative zoom-effect overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A sophisticated living area within a presidential suite, featuring a curated collection of modern art on the walls and a low-profile velvet sofa. The color palette is composed of deep navy, muted gold, and soft cream. The atmosphere is one of calm, reliability, and exclusive access, designed for the discerning traveler." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvGZSZ7lRNQmbhPfdl9d2Mq8f46M3Ir9ksNpZ32juNel7bY7z9iKnshZm2g3xvaBj6veHVJTyotQuZiuRIyQB8qHmneY-Dvp-5Q6gNR_dFYKrnwB1kZIgEzpgTJnK0lDHa8Tg1qZ66lXhotfOXz2SCJMf-7CE72ka1Iu8cINCDJux82jI_tQTcbOoudevlDMgUU7HvDRJNv4_t2z5kk1Hm4rs9O_crOpaTlNHMiK7rJNbtaGjfIUsUs4f82PVV05T5BA40yaj59WE"/>
+</div>
+<div class="relative zoom-effect overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A detailed view of a luxury hotel suite's walk-in closet, showcasing premium wooden cabinetry and soft integrated LED lighting. Elegant designer robes and high-end travel accessories are visible, emphasizing the meticulous attention to detail and high-end corporate luxury aesthetic of Majestic Reserve." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsW5ycImhanxoXNyygWtmUh8Arqj4gcndL66OeX1rcnLC7llaxXOaUwR9O2j-BkPTLSCfDu-dFxKsEZ-hZRyMiSHWcSCU-RGGlqD5KWkx5xZ3LijM4PNXwFwWP_Jy05Lj8GP868POKsrqVsd9YHDw3XdIDLBkdOTfcWY_Ms7qMrj8O3uLcd-Eyh16vEmND0KbJdryF7zNi6A6FUEK8SAMDbFnvf8qhlut3KAm7tG0m4DxsvwpyBViL5PTQxgS11lXVL1Aey59RGoU"/>
+<button class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-label-md hover:bg-black/50 transition-colors">
+<span class="material-symbols-outlined mr-2">grid_view</span> View All Photos
+                    </button>
+</div>
+</div>
+</section>
+<!-- Room Details & Booking Sidebar -->
+<section class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-3 gap-gutter pb-stack-lg">
+<!-- Left: Description & Amenities -->
+<div class="lg:col-span-2 space-y-stack-lg">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-2">The Royal Azure Suite</h1>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span> 4.98 (124 reviews)</span>
+<span>•</span>
+<span class="flex items-center gap-1 font-semibold text-primary underline">Amalfi Coast, Italy</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="p-3 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">share</span></button>
+<button class="p-3 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+</div>
+<div class="py-8 border-y border-outline-variant grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-3xl mb-2 text-primary">bed</span>
+<span class="font-label-md text-label-md">King Bed</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-3xl mb-2 text-primary">aspect_ratio</span>
+<span class="font-label-md text-label-md">120 m²</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-3xl mb-2 text-primary">group</span>
+<span class="font-label-md text-label-md">2 Guests</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-3xl mb-2 text-primary">balcony</span>
+<span class="font-label-md text-label-md">Private Terrace</span>
+</div>
+</div>
+<div class="prose max-w-none">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4">Experience Unrivaled Elegance</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Perched high above the azure waters of the Mediterranean, The Royal Azure Suite is the pinnacle of coastal luxury. Designed with a philosophy of tonal minimalism, the suite features a seamless blend of natural textures and modern technology. From the hand-stitched Italian linens to the private infinity-edge whirlpool, every detail is curated to provide a high-touch concierge experience.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">
+                        Indulge in our signature turn-down service, featuring local delicacies and artisanal fragrances designed exclusively for Majestic Reserve.
+                    </p>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">What this suite offers</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">wifi</span>
+<span class="font-body-md text-body-md">High-speed Fiber WiFi</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">pool</span>
+<span class="font-body-md text-body-md">Private Infinity Pool</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">spa</span>
+<span class="font-body-md text-body-md">In-room Spa Services</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">ac_unit</span>
+<span class="font-body-md text-body-md">Climate Control</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">coffee_maker</span>
+<span class="font-body-md text-body-md">Gourmet Coffee Station</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">local_bar</span>
+<span class="font-body-md text-body-md">Personalized Mini-Bar</span>
+</div>
+</div>
+<button class="mt-8 px-6 py-3 border border-primary font-label-md text-label-md hover:bg-surface-container transition-colors rounded-lg">Show all 32 amenities</button>
+</div>
+<!-- Calendar Section -->
+<div class="pt-10 border-t border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">Select check-in date</h2>
+<div class="bg-white p-8 rounded-xl luxury-shadow">
+<div class="flex justify-between mb-8">
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">December 2024</h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-4 text-center">
+<div class="font-label-md text-caption text-on-surface-variant">SU</div>
+<div class="font-label-md text-caption text-on-surface-variant">MO</div>
+<div class="font-label-md text-caption text-on-surface-variant">TU</div>
+<div class="font-label-md text-caption text-on-surface-variant">WE</div>
+<div class="font-label-md text-caption text-on-surface-variant">TH</div>
+<div class="font-label-md text-caption text-on-surface-variant">FR</div>
+<div class="font-label-md text-caption text-on-surface-variant">SA</div>
+<!-- Simple Calendar Representation -->
+<div class="py-3 text-outline-variant cursor-not-allowed">24</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">25</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">26</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">27</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">28</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">29</div>
+<div class="py-3 text-outline-variant cursor-not-allowed">30</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">1</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">2</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">3</div>
+<div class="py-3 bg-primary text-white font-bold rounded-lg cursor-pointer">4</div>
+<div class="py-3 bg-surface-container-highest cursor-pointer">5</div>
+<div class="py-3 bg-surface-container-highest cursor-pointer">6</div>
+<div class="py-3 bg-primary text-white font-bold rounded-lg cursor-pointer">7</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">8</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">9</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">10</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">11</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">12</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">13</div>
+<div class="py-3 hover:bg-secondary-container hover:text-on-secondary-container cursor-pointer rounded-lg transition-colors">14</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Booking Sidebar -->
+<aside class="relative">
+<div class="sticky top-28 bg-white p-8 rounded-2xl luxury-shadow border border-surface-container-high flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-headline-md text-headline-sm text-primary">$1,250</span>
+<span class="text-on-surface-variant font-body-md">/ night</span>
+</div>
+<div class="text-secondary flex items-center font-label-md">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span> 4.98
+                        </div>
+</div>
+<div class="grid grid-cols-2 rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-4 border-r border-outline-variant hover:bg-surface-container-low transition-colors cursor-pointer">
+<p class="font-label-md text-[10px] uppercase text-primary mb-1">Check-in</p>
+<p class="text-on-surface-variant text-body-md">12/04/2024</p>
+</div>
+<div class="p-4 hover:bg-surface-container-low transition-colors cursor-pointer">
+<p class="font-label-md text-[10px] uppercase text-primary mb-1">Checkout</p>
+<p class="text-on-surface-variant text-body-md">12/07/2024</p>
+</div>
+<div class="col-span-2 p-4 border-t border-outline-variant hover:bg-surface-container-low transition-colors cursor-pointer flex justify-between items-center">
+<div>
+<p class="font-label-md text-[10px] uppercase text-primary mb-1">Guests</p>
+<p class="text-on-surface-variant text-body-md">2 guests</p>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-4 rounded-xl font-label-md text-label-md uppercase tracking-widest luxury-shadow hover:opacity-90 active:scale-[0.98] transition-all">
+                        Reserve Now
+                    </button>
+<p class="text-center text-caption text-on-surface-variant">You won't be charged yet</p>
+<div class="space-y-4">
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="underline">$1,250 x 3 nights</span>
+<span>$3,750</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="underline">Cleaning fee</span>
+<span>$150</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span class="underline">Majestic service fee</span>
+<span>$420</span>
+</div>
+<hr class="border-outline-variant"/>
+<div class="flex justify-between font-headline-sm text-body-lg font-bold text-primary">
+<span>Total</span>
+<span>$4,320</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-xl border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">diamond</span>
+<p class="text-[12px] text-on-secondary-fixed-variant leading-tight">This is a rare find. Majestic Reserve suites in Amalfi Coast are usually booked months in advance.</p>
+</div>
+</div>
+</aside>
+</section>
+<!-- Reviews Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-stack-lg border-t border-outline-variant">
+<div class="flex items-center gap-2 mb-10">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">4.98 • 124 reviews</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12">
+<!-- Review Card 1 -->
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a woman in her late 30s with an elegant, modern corporate look. She is smiling warmly against a soft-focus background of a high-end luxury office. The lighting is flattering and high-key, aligning with the brand's sophisticated and breathable aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALjPudP-C13nxlI8XCNoMFQM0-cy_OdiAsXSVNk6LehXdO83ROGbsmG4NGOlHwKMZ2crkWAnLQQiA030wucMjbCpVmttFlyhWAc4GMiy0RoUVtdT8sLcTvnaHnKKp-Q3E2IoIAX3PrZ_y3_Y2X59xt6L4xao27I_0QN4tRtoE3widZlXb94h7N5cBv5TxJLE-NpixXzY9VqGYRGNAX5iMSO_olrHmFg59NKH1NofGOF19gloqFZCXiUGXBlpw_rusKWQTttIsI7v4"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Elena Rodriguez</p>
+<p class="text-caption text-on-surface-variant">Madrid, Spain • October 2024</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        An absolute masterpiece of hospitality. The suite's design is breathtaking, but the service was even better. Our concierge arranged a private yacht tour within hours. The quiet luxury vibe is exactly what we needed.
+                    </p>
+</div>
+<!-- Review Card 2 -->
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated man in his early 40s wearing a high-quality navy blue linen shirt, standing on a sun-drenched terrace. He looks relaxed and successful, representing the elite clientele of Majestic Reserve. The style is tonal minimalism with soft, natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp9dUz8E16bWQD75d6o5xArNbgw2aa4qXhE6hp0MBCwkqCEc0e__hEsyVpRv14QVf8w0z1d3hT7S3_MRQs4ibpUxJqxKv2z5Ah4xzpM5sl6KJrjbbxv5z6Oo5CNhThSOJYVavoiFdF3mIYUWXwnfnaXHNK0AmG8hro5avX_rWmxD0QCne59KRZY7bgKjWnPupP8gBl4dYbjALmWZk_a_-voNOJWpQ8cIiEfiE57VcFvyyDsDG7SH7m3WlUOJDwzslrbdg2doeOq8M"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Julian Thorne</p>
+<p class="text-caption text-on-surface-variant">London, UK • September 2024</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        The attention to detail in the Royal Azure Suite is unmatched. From the bedside climate controls to the curated art selection, everything feels personal. Best stay of our lives.
+                    </p>
+</div>
+</div>
+<button class="mt-12 px-8 py-3 border border-primary font-label-md text-label-md hover:bg-surface-container transition-colors rounded-lg">Show all 124 reviews</button>
+</section>
+<!-- Location Map Placeholder Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-stack-lg border-t border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">Where you'll be</h2>
+<div class="w-full h-[400px] rounded-2xl overflow-hidden relative luxury-shadow">
+<img class="w-full h-full object-cover" data-location="Amalfi Coast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIKVujBocDEHQbdDlKoS7-rtcT_m5h5bQSxyUxbTzsLZVJlNyS-0mwWjAGjqANhCcAfYMk47MyNRE6FbY0BkzdadPkayevwfsFv6zYfgSFbabykUmp1AQSDNCJgGBQqXeH6rJRd_D4CYRsQdTwB5d81unoUoVijUag6Ev91QK6tgo3zHT_Qw2AxyGUBiZ--lPlZrEde31pkKwAJFajHc3hVNtBeadrjVpWc1au2Tq-3QL0gfOiTYE2jRkIESu6bA-MTfOg4WOUqYM"/>
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-primary text-white p-4 rounded-full shadow-xl animate-bounce">
+<span class="material-symbols-outlined text-2xl">location_on</span>
+</div>
+<div class="mt-2 bg-white px-4 py-1 rounded-full text-caption font-bold shadow-md">Royal Azure Suite</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="font-body-lg font-bold text-primary mb-2">Amalfi Coast, Italy</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed max-w-2xl">
+                    Located on the exclusive cliffside of Positano, within walking distance to private beach clubs and Michelin-starred restaurants. The suite offers complete privacy while remaining connected to the heartbeat of the coast.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-fixed w-full py-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-display-lg text-headline-md text-secondary dark:text-secondary-fixed mb-6 block">Majestic Reserve</span>
+<p class="text-on-primary/70 font-body-md mb-6 leading-relaxed">Redefining luxury travel through curated experiences and impeccable service.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-primary mb-6">Navigation</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-primary/70 hover:text-on-primary transition-colors font-body-md" href="#">Home</a></li>
+<li><a class="text-secondary font-bold font-body-md" href="#">Rooms</a></li>
+<li><a class="text-on-primary/70 hover:text-on-primary transition-colors font-body-md" href="#">About</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-primary mb-6">Legal</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-primary/70 hover:text-on-primary transition-colors font-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-on-primary/70 hover:text-on-primary transition-colors font-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-primary/70 hover:text-on-primary transition-colors font-body-md" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-primary mb-6">Newsletter</h4>
+<p class="text-caption text-on-primary/60 mb-4">Join our list for exclusive seasonal access.</p>
+<div class="flex flex-col gap-3">
+<input class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body-md focus:border-secondary outline-none" placeholder="Email Address" type="email"/>
+<button class="bg-secondary text-on-secondary py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all hover:opacity-80">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-12 pt-8 border-t border-white/10 text-center">
+<p class="text-on-primary/50 text-caption">© 2024 Majestic Reserve. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the booking sidebar calculation
+        const pricePerNight = 1250;
+        const cleaningFee = 150;
+        const serviceFeeBase = 420;
+
+        // In a real app, this would be reactive. Here we just add a small scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.classList.remove('shadow-sm');
+            } else {
+                nav.classList.add('shadow-sm');
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body></html>

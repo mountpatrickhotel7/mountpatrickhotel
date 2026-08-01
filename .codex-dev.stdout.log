@@ -1,0 +1,12 @@
+
+> mount-patrick-hotel@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.56.1:3000
+✓ Ready in 742ms
+
+ GET / 404 in 1252ms (next.js: -143663µs, proxy.ts: 1246ms, application-code: 150ms)
+○ Compiling /_not-found/page ...
+[?25h

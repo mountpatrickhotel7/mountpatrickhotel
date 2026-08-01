@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>The Royal Azure Suite | Majestic Reserve</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-header {
+            background: rgba(248, 249, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .sticky-reserve {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-secondary-fixed": "#281900",
+                "on-secondary-container": "#785a26",
+                "on-primary-fixed-variant": "#3f465c",
+                "outline-variant": "#c6c6cd",
+                "on-primary": "#ffffff",
+                "surface-container-highest": "#d3e4fe",
+                "on-surface": "#0b1c30",
+                "inverse-surface": "#213145",
+                "on-tertiary": "#ffffff",
+                "on-surface-variant": "#45464d",
+                "on-background": "#0b1c30",
+                "error": "#ba1a1a",
+                "surface-container-low": "#eff4ff",
+                "surface-bright": "#f8f9ff",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#e0e3e5",
+                "secondary-fixed": "#ffdeab",
+                "on-tertiary-container": "#818486",
+                "tertiary-container": "#191c1e",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#bec6e0",
+                "on-error": "#ffffff",
+                "primary-container": "#131b2e",
+                "inverse-primary": "#bec6e0",
+                "on-secondary-fixed-variant": "#5d420f",
+                "surface-variant": "#d3e4fe",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#f8f9ff",
+                "background": "#f8f9ff",
+                "surface-tint": "#565e74",
+                "outline": "#76777d",
+                "primary": "#000000",
+                "on-primary-container": "#7c839b",
+                "on-primary-fixed": "#131b2e",
+                "primary-fixed": "#dae2fd",
+                "secondary": "#775925",
+                "surface-dim": "#cbdbf5",
+                "surface-container": "#e5eeff",
+                "on-tertiary-fixed": "#191c1e",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#dce9ff",
+                "secondary-container": "#fdd494",
+                "on-tertiary-fixed-variant": "#444749",
+                "tertiary-fixed-dim": "#c4c7c9",
+                "tertiary": "#000000",
+                "inverse-on-surface": "#eaf1ff",
+                "secondary-fixed-dim": "#e8c182"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "margin-desktop": "64px",
+                "margin-mobile": "20px",
+                "stack-sm": "4px",
+                "base": "8px",
+                "gutter": "24px",
+                "stack-md": "16px",
+                "stack-lg": "40px",
+                "container-max": "1280px"
+              },
+              "fontFamily": {
+                "body-lg": ["Inter"],
+                "caption": ["Inter"],
+                "display-lg": ["Playfair Display"],
+                "headline-md": ["Playfair Display"],
+                "label-md": ["Inter"],
+                "display-lg-mobile": ["Playfair Display"],
+                "headline-sm": ["Playfair Display"],
+                "body-md": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 glass-header shadow-sm transition-all duration-300">
+<nav class="flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low active:scale-95 transition-all text-on-surface">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-display-lg-mobile text-headline-sm-mobile text-primary tracking-tight">Majestic Reserve</span>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low active:scale-95 transition-all text-on-surface">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low active:scale-95 transition-all text-on-surface">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pb-32 pt-16">
+<!-- Hero Image Gallery -->
+<section class="relative w-full h-[397px] overflow-hidden">
+<div class="flex h-full w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+<div class="flex-none w-full h-full snap-start relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A wide-angle interior photograph of the Royal Azure Suite featuring floor-to-ceiling windows overlooking a crystal blue ocean. The room is decorated in tonal minimalism with navy and cream accents, high-end velvet furniture, and polished marble floors. Soft evening light spills into the room, creating an atmosphere of quiet luxury and exclusive serenity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC--SEqgbOXx7K1r3EINStjfhnvP7zeXXiu6L_0RYDCKZYDn_9oLoPLeecPlHOHi6jACltSxznCVpuik42H-zGPuIkjmuJ9V8LMjinm3JcnIx7Gb5uLKumZx7oF9cixO4yH0y8RHc054MTqq2zdrqmDjTu3aW-JiawMLSVwo1ieq5v4oCQW2M-XX1kMFlIijjBqn39LPlB_8smOoYk-IJzPVK9YIaJuMvajt9TVwBrjFn12eqFSAG-vuNIWSfofBGExj06fvYYbzjc')">
+</div>
+</div>
+<div class="flex-none w-full h-full snap-start relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A close-up shot of a king-sized bed in a luxury hotel suite with pristine white Egyptian cotton linens and a navy blue silk throw. The headboard is crafted from dark walnut wood with integrated warm gold LED lighting. Two marble bedside tables feature minimalist crystal lamps and fresh white lilies, emphasizing a clean and sophisticated corporate luxury style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBHd0hqK_55BpkDDxXP6LkYyNFm5dqoun2juUbVWez5hR1cHyHzsy0lpHkHdV1EWBvFNq8VqYl41-phinq3gZ097fdxeQz0LVLYKYhZmFF1zzyMZxFA7iCEtcEHmL9qVkoM6S465qG84fE0EjxFGWEMPt5Bpnd0wikppYvZI87_Wxzo1l7PUcQrTaVLQvsPxE4YL81-rcA8uD3s_Qh4Sz_pzuXZdu-586DdHSKppoGd2AQ-m5d3d4RHrGWq61ASlWk6Iqb7TnXpdNk')">
+</div>
+</div>
+</div>
+<!-- Pagination Indicator -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+<div class="w-2 h-2 rounded-full bg-on-primary"></div>
+<div class="w-2 h-2 rounded-full bg-on-primary/40"></div>
+<div class="w-2 h-2 rounded-full bg-on-primary/40"></div>
+</div>
+</section>
+<!-- Room Content Container -->
+<div class="px-margin-mobile -mt-8 relative z-10">
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-base">
+<div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight">The Royal Azure Suite</h1>
+<p class="text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="location_on">location_on</span>
+<span class="text-label-md font-label-md">East Wing, Penthouse Floor</span>
+</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 bg-secondary-container/30 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="star" data-weight="fill">star</span>
+<span class="text-secondary font-bold text-label-md">4.9</span>
+</div>
+<span class="text-caption text-on-surface-variant mt-1">(124 Reviews)</span>
+</div>
+</div>
+<!-- Feature Icons Bento -->
+<div class="grid grid-cols-4 gap-2 mt-stack-md py-stack-md border-y border-outline-variant/20">
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="bed">bed</span>
+</div>
+<span class="text-caption font-label-md">King Bed</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+</div>
+<span class="text-caption font-label-md">120 m²</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<span class="text-caption font-label-md">2 Guests</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="deck">deck</span>
+</div>
+<span class="text-caption font-label-md">Terrace</span>
+</div>
+</div>
+<!-- Description -->
+<div class="mt-stack-lg">
+<h2 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface mb-base">Experience Unrivaled Elegance</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Perched on the highest floor of the Majestic Reserve, the Royal Azure Suite offers an expansive sanctuary of sophistication. Every detail, from the hand-woven rugs to the curated selection of contemporary art, has been chosen to provide an atmosphere of quiet luxury. 
+                    </p>
+<button class="text-secondary font-label-md text-label-md mt-base flex items-center gap-1">
+                        Read More <span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- Amenities Grid -->
+<div class="mt-stack-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-stack-md">Essential Amenities</h3>
+<div class="grid grid-cols-2 gap-y-stack-md gap-x-gutter">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="wifi">wifi</span>
+<span class="text-body-md text-on-surface">High-Speed WiFi</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="local_bar">local_bar</span>
+<span class="text-body-md text-on-surface">Private Bar</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="ac_unit">ac_unit</span>
+<span class="text-body-md text-on-surface">Climate Control</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="tv">tv</span>
+<span class="text-body-md text-on-surface">8K Smart TV</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="coffee_maker">coffee_maker</span>
+<span class="text-body-md text-on-surface">Nespresso™ Bar</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="shower">shower</span>
+<span class="text-body-md text-on-surface">Rain Shower</span>
+</div>
+</div>
+<button class="w-full mt-stack-lg py-4 border border-outline text-on-surface rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors">
+                        View All 42 Amenities
+                    </button>
+</div>
+</div>
+<!-- Map / Location Preview -->
+<div class="mt-stack-lg rounded-xl overflow-hidden h-40 relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-location="Monaco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAa6necrWbY2Maa-mNlaOJ7MhyHrxyWYFKK5tMU1xeoEg7h8uvF3TJ58278_BaMsYyAanOJ-s6BsMO76Gb9rQaK_gYOwDGhU2ZzteG5yHHnjC3MlexYGiOs2r2eF-g4lMdjdkNeIo2zjv4rblS-j0KXEPWdvqhgT88Q6rRJ4jG63kaFyCQKzLl0VMIVH9IliSi-Ve0JqwyXKDq2g2NFoU_90IJAK22CsARhT1rVlYAeWZ_5j-6l_sBAq0IukA796Z9wgSHuH0kabMQ')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<span class="text-white font-label-md text-label-md">Explore Surroundings</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Booking Footer -->
+<footer class="fixed bottom-0 w-full z-50 sticky-reserve px-margin-mobile py-4 pb-safe flex items-center justify-between shadow-[0px_-4px_20px_rgba(15,23,42,0.05)]">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1">
+<span class="text-headline-sm font-headline-sm text-on-surface">$1,250</span>
+<span class="text-caption text-on-surface-variant">/ night</span>
+</div>
+<p class="text-caption text-secondary font-semibold">Limited Availability</p>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-xl font-label-md text-label-md active:scale-95 transition-transform shadow-md">
+            Reserve Now
+        </button>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.style.backgroundColor = 'rgba(248, 249, 255, 0.95)';
+            } else {
+                header.classList.remove('shadow-md');
+                header.style.backgroundColor = 'rgba(248, 249, 255, 0.8)';
+            }
+        });
+
+        // Simple scroll spy for gallery indicators
+        const gallery = document.querySelector('.hide-scrollbar');
+        const dots = document.querySelectorAll('.rounded-full.bg-on-primary');
+        
+        gallery.addEventListener('scroll', () => {
+            const index = Math.round(gallery.scrollLeft / gallery.clientWidth);
+            dots.forEach((dot, i) => {
+                dot.style.opacity = i === index ? '1' : '0.4';
+            });
+        });
+    </script>
+</body></html>

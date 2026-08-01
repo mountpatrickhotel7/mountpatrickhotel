@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Majestic Reserve | Luxury Reimagined</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#281900",
+                      "on-secondary-container": "#785a26",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "outline-variant": "#c6c6cd",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-surface": "#0b1c30",
+                      "inverse-surface": "#213145",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#45464d",
+                      "on-background": "#0b1c30",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#eff4ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#e0e3e5",
+                      "secondary-fixed": "#ffdeab",
+                      "on-tertiary-container": "#818486",
+                      "tertiary-container": "#191c1e",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-error": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "inverse-primary": "#bec6e0",
+                      "on-secondary-fixed-variant": "#5d420f",
+                      "surface-variant": "#d3e4fe",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "background": "#f8f9ff",
+                      "surface-tint": "#565e74",
+                      "outline": "#76777d",
+                      "primary": "#000000",
+                      "on-primary-container": "#7c839b",
+                      "on-primary-fixed": "#131b2e",
+                      "primary-fixed": "#dae2fd",
+                      "secondary": "#775925",
+                      "surface-dim": "#cbdbf5",
+                      "surface-container": "#e5eeff",
+                      "on-tertiary-fixed": "#191c1e",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#dce9ff",
+                      "secondary-container": "#fdd494",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "tertiary": "#000000",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-fixed-dim": "#e8c182"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "stack-sm": "4px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "stack-md": "16px",
+                      "stack-lg": "40px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "display-lg": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "headline-sm": ["Playfair Display"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="text-on-surface dark:text-inverse-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed tracking-tight">Majestic Reserve</span>
+<button class="text-on-surface dark:text-inverse-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative h-[707px] w-full overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 animate-subtle-zoom" data-alt="A cinematic, low-angle shot of a majestic luxury mountain resort at dusk. The architecture features soaring glass walls and dark timber accents, nestled against snow-capped alpine peaks. Warm golden light spills from the interior windows, contrasting with the deep twilight blues of the sky. The atmosphere is one of exclusive serenity and high-end corporate elegance, captured with a professional architectural photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyIoKcz-rorp3xos1_maf4oPpRpf15P-faVl5aqSKy_vQlVf-ou5e8VPn_9NWM0LE5qPiBwAxYYkQAZLlCsBVXsJqTZEziyPPB21D4F-avp16SCIv4KAWONBCTlwM67DuNkZY71cx0ieb0JGyI2br_-xrNJ--crqvjVnAxxaPdAJJhCV1P4HlwuJBdg0P2n783HrUVZuwolR5EVoO5biiqqIM4_48JwlxMqmV4lRE9ufzmG3CHYZEs39RXXL2ohsWStjJbPWv-ugE')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end px-margin-mobile pb-24">
+<span class="font-label-md text-label-md text-secondary-container bg-primary px-3 py-1 w-fit rounded-full mb-stack-md">LIMITED ACCESS</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-stack-sm leading-tight drop-shadow-md">Elevated Alpine Sanctuary</h1>
+<p class="font-body-md text-body-md text-white/90 max-w-[280px]">Experience the peak of refined living in the heart of the majestic reserves.</p>
+</div>
+</section>
+<!-- Search Bar (Check Availability) -->
+<section class="relative z-20 px-margin-mobile -mt-16">
+<div class="glass-panel p-6 rounded-xl shadow-xl border border-white/20">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Check Availability</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Destination / Suite</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all" placeholder="Select Property" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Check In</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg text-body-md outline-none" type="date"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase ml-1">Guests</label>
+<select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg text-body-md outline-none">
+<option>2 Adults</option>
+<option>4 Adults</option>
+<option>Suite Exclusive</option>
+</select>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-white font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-all">
+                        EXPLORE AVAILABILITY
+                    </button>
+</div>
+</div>
+</section>
+<!-- Curated Living Spaces -->
+<section class="mt-stack-lg px-margin-mobile">
+<div class="flex justify-between items-end mb-stack-md">
+<div>
+<h2 class="font-headline-sm-mobile text-headline-sm-mobile">Curated Living Spaces</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Exceptional suites for the discerning.</p>
+</div>
+</div>
+<!-- Bento-ish Carousel -->
+<div class="flex overflow-x-auto gap-gutter pb-4 hide-scrollbar snap-x snap-mandatory">
+<!-- Card 1: Royal Vista Suite -->
+<div class="min-w-[85%] snap-center">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious hotel suite interior featuring a massive floor-to-ceiling window overlooking a pristine mountain range. The room is decorated in tonal minimalism with plush velvet textures, dark wood furniture, and soft golden ambient lighting. A king-sized bed with crisp white linens is the focal point. High-end modern corporate luxury aesthetic with soft, diffused morning light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4zzrzQHbbiKsekNCU_GGEzQ5JYMR6DKd-4c8DHFF3SsOcehIhjjOAQYDUWns8xmrNasvDle0YaEg-yYWvRdrkAftLuZGeiD5hRt2Vn4CwlY-E4z6vYT8dL75qEw9RTHkzxRIgvOLjCC5TcMAOsL3x7Ob6x2tRf32H8CtWQT_3MDYmjIi-nGlkxe5H8fZjDtNfaX3NasnRJUz9N3I25eBMUDyEJRrayJ6mpdmuEAqbGT-6wy9HIW7kzkb1o96n6raCNMhYOj-9rxQ')"></div>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-secondary font-bold text-[12px] shadow-sm">
+                                $1,450 / night
+                            </div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-headline-sm-mobile text-headline-sm-mobile mb-2">Royal Vista Suite</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Panoramic alpine views with a private heated balcony and master study.</p>
+<button class="w-full py-3 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary hover:text-white transition-all">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Garden Sanctuary -->
+<div class="min-w-[85%] snap-center">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A tranquil luxury suite that opens directly onto a private botanical garden. The interior features natural stone walls, light oak flooring, and organic cotton fabrics. Soft dappled sunlight filters through lush green leaves outside. The mood is peaceful, secluded, and deeply relaxing, representing the 'Quiet Luxury' philosophy of the brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAthW1ZMiSAb-siJiZ5YIgoimWIEgQDQWpDNegeI4csMdIq4Q12_4TbELSrZxL2w-ZUbFYAwCQPNEX3flH4joYN9nGY1JExpqnHntgE-kQtKIfWbYsA8ZUIDxemcgOt7jS6tKhg4sg7xLjCIBcvXFd3k_lOM2eMgGo32HZlIxfVa36YQhEtjgLQZQcr5PJDe2NUZLqnLEG3B_ziyp4HzJgG8gHJP1e2QwCRKa1R8iKYIG-QisfOk16uoz9dElewm84sE51p0FTO1g')"></div>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-secondary font-bold text-[12px] shadow-sm">
+                                $980 / night
+                            </div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-headline-sm-mobile text-headline-sm-mobile mb-2">Garden Sanctuary</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Secluded garden-level living with a private meditation deck and koi pond.</p>
+<button class="w-full py-3 border border-primary text-primary font-label-md text-label-md rounded-lg transition-all">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Majestic Penthouse -->
+<div class="min-w-[85%] snap-center">
+<div class="bg-white rounded-xl overflow-hidden shadow-sm group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An ultra-exclusive penthouse living room with double-height ceilings and a private infinity pool visible on the terrace. Minimalist designer furniture in cream and charcoal tones. The lighting is sophisticated, with architectural spotlights highlighting original artworks. A view of a snow-dusted valley at dawn. Professional luxury real estate photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0R17ERb9DwCBNO_S1bDCfpcqQnEcRlL7aiDeSyyc0LqWHC_xgs2y7Q0lHg38oYs8y_CUGBx89jPV9r7Hrd2OWPM4r4MWeGF7iHFnhKLe9YWdnHO610pYATbzq7ij4LOoygzzSBeHJrCIncLAYkq91YJl_DOchC4gQo9CU3RjHtGFNVlyqF1v3KDKuO_6TZs2N50OCkTtHA8sq26Izr-WlDetJhSSBQh0JOJzFKiDFPV23U_hVKHBo7P7IEA64PCWTBuzxKJLNRrk')"></div>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-secondary font-bold text-[12px] shadow-sm">
+                                $3,200 / night
+                            </div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-headline-sm-mobile text-headline-sm-mobile mb-2">Majestic Penthouse</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">The crown jewel with 360-degree views, private chef, and sky pool.</p>
+<button class="w-full py-3 border border-primary text-primary font-label-md text-label-md rounded-lg transition-all">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Philosophy Section -->
+<section class="mt-stack-lg py-stack-lg bg-surface-container-low px-margin-mobile">
+<div class="space-y-6">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Our Philosophy</span>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary">Space. Silence. Service.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    At Majestic Reserve, we believe true luxury isn't found in noise, but in the deliberate absence of it. We provide a canvas of silence and impeccable service, allowing you to reconnect with the world on your own terms.
+                </p>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="bg-white p-4 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'wght' 300;">eco</span>
+<h4 class="font-label-md text-label-md mb-1">Eco-Conscious</h4>
+<p class="text-[12px] text-on-surface-variant">Carbon-neutral luxury operations.</p>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'wght' 300;">concierge</span>
+<h4 class="font-label-md text-label-md mb-1">Tailored Stay</h4>
+<p class="text-[12px] text-on-surface-variant">24/7 dedicated guest concierge.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Guest Testimonials -->
+<section class="mt-stack-lg px-margin-mobile mb-stack-lg">
+<h2 class="font-headline-sm-mobile text-headline-sm-mobile mb-stack-md text-center">Guest Reflections</h2>
+<div class="space-y-4">
+<div class="bg-surface-container p-6 rounded-2xl relative">
+<span class="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl">format_quote</span>
+<p class="font-body-md text-body-md italic mb-4 relative z-10">"A transformative experience. The level of detail and the sheer tranquility of the Majestic Penthouse is unmatched globally."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cover" data-alt="A professional headshot of a sophisticated middle-aged man with graying hair, wearing a high-end navy blue suit. The lighting is soft and corporate, set against a blurred luxurious office background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSuNygMDujxDC6Xt8hvne1aHDUjg0kt1qIh9kbE_h2mCl7eAdwzJKeiIn3lPdwjTQgac6yDNJPTU36uT9lLNARBQgJBgOM-q8xV-7NDUFAp3NmoAjFd2piFqhAEb6D3umcKtsJdnx8Z_SxhfesCHGus66cIgMSYeFRlz_Gd4WqSEIy25eqrP-fMTuO3lkMzJ0SLJT6Wt1C9umDPjNMDGlcy6lFiFNKzlTE_ftDinLuiVVGKKUxCW_KuY9XgCQF2NDCUaatL_tmN9g')"></div>
+<div>
+<p class="font-label-md text-label-md">Julian Vance</p>
+<p class="text-[10px] uppercase text-on-surface-variant">CEO, Venture Peak</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl relative">
+<span class="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl">format_quote</span>
+<p class="font-body-md text-body-md italic mb-4 relative z-10">"The Garden Sanctuary lived up to its name. Total privacy and the most attentive staff I have ever encountered."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cover" data-alt="A professional headshot of an elegant woman with her hair in a sleek bun, wearing a minimalist silk blouse and pearl earrings. Soft, high-key lighting creates a bright and approachable luxury aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAT1ZSBDc0x518MROJ3xbdke8wDjt3DT5nApnIY-cZ9oHpXSEpCLGhFLvmRP2RqAzK35AKOFH7QnnRjjxLFpAFQl19y3iiPekt2qXEoPHEeYPsgll-dXmhsXOk9DDiXFMX9EiO81rzL4KHU0eVOnRysFG-41lehK8MkT9e31LDakSuzNXGVv26UuYHEE1HqkX0CZLeX9Ngovd405OGAZxCY18_11wF7At-xHG2wXWGk-Cpi6o84eyRPE09uKg9bbBe54aREIakMibU')"></div>
+<div>
+<p class="font-label-md text-label-md">Elena Roscoe</p>
+<p class="text-[10px] uppercase text-on-surface-variant">Cultural Curator</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant flex flex-col items-center gap-stack-md py-stack-lg px-margin-mobile mb-20">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant dark:text-on-surface">MAJESTIC RESERVE</span>
+<div class="flex gap-stack-md">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">© 2024 Majestic Reserve Luxury Hotels</p>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] flex justify-around items-center h-20 pb-safe px-2">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 scale-105 transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md text-label-md">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md">Inbox</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for scrolling effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.add('shadow-sm');
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        // Simple button interaction feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('opacity-70');
+                setTimeout(() => this.classList.remove('opacity-70'), 100);
+            });
+        });
+    </script>
+</body></html>
