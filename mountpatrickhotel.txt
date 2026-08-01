@@ -1,0 +1,4 @@
+gmail : mountpatrickhotel7@gmial.com
+password: pullUp@mount
+
+supabasedb password: 9PT3arPKK7XNTX+
