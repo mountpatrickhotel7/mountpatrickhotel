@@ -12,9 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/search-bar";
 import { RoomCard } from "@/components/room-card";
+import { GalleryLightbox } from "@/components/gallery-lightbox";
 import { HOTEL } from "@/lib/constants";
 import { getRooms } from "@/lib/queries";
-import { cn } from "@/lib/utils";
 
 const PROMISES = [
   {
@@ -40,12 +40,12 @@ const PROMISES = [
 ];
 
 const GALLERY = [
-  { src: "/images/gallery/pool.jpg", label: "Swimming Pool", span: true },
-  { src: "/images/gallery/lounge.jpg", label: "Rooftop Lounge" },
-  { src: "/images/gallery/reception.jpg", label: "Reception" },
-  { src: "/images/gallery/bar.jpg", label: "Bar & Games" },
-  { src: "/images/gallery/terrace.jpg", label: "Garden Terrace" },
-  { src: "/images/gallery/courtyard.jpg", label: "Courtyard" },
+  { src: "/images/gallery/pool.jpg", alt: "Swimming Pool", label: "Swimming Pool", span: "sm:col-span-2 sm:row-span-2" },
+  { src: "/images/gallery/lounge.jpg", alt: "Rooftop Lounge", label: "Rooftop Lounge" },
+  { src: "/images/gallery/reception.jpg", alt: "Reception", label: "Reception" },
+  { src: "/images/gallery/bar.jpg", alt: "Bar & Games", label: "Bar & Games" },
+  { src: "/images/gallery/terrace.jpg", alt: "Garden Terrace", label: "Garden Terrace" },
+  { src: "/images/gallery/courtyard.jpg", alt: "Courtyard", label: "Courtyard" },
 ];
 
 export default async function HomePage() {
@@ -64,7 +64,7 @@ export default async function HomePage() {
             priority
             className="object-cover object-[center_38%]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/75" />
         </div>
 
         <div className="container-page flex min-h-[78vh] flex-col justify-center pb-28 pt-24 text-white">
@@ -172,29 +172,7 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="grid auto-rows-[200px] gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {GALLERY.map((g) => (
-            <div
-              key={g.label}
-              className={cn(
-                "group relative overflow-hidden rounded-2xl shadow-soft",
-                g.span && "sm:col-span-2 sm:row-span-2"
-              )}
-            >
-              <Image
-                src={g.src}
-                alt={g.label}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-              <span className="absolute bottom-4 left-4 font-heading text-lg font-semibold text-white drop-shadow">
-                {g.label}
-              </span>
-            </div>
-          ))}
-        </div>
+        <GalleryLightbox photos={GALLERY} gridClassName="grid auto-rows-[200px] gap-4 sm:grid-cols-2 lg:grid-cols-3" />
       </section>
 
       {/* Location + CTA */}

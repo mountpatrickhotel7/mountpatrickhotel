@@ -17,7 +17,15 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const secret = process.env.CRON_SECRET;
-  if (secret && request.headers.get("authorization") !== `Bearer ${secret}`) {
+  if (
+    !secret ||
+    secret.length < 32 ||
+    secret === "change-me-to-a-different-long-random-string"
+  ) {
+    console.error("cron:keep-alive is disabled because CRON_SECRET is not configured");
+    return NextResponse.json({ error: "service unavailable" }, { status: 503 });
+  }
+  if (request.headers.get("authorization") !== `Bearer ${secret}`) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

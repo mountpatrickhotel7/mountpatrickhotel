@@ -81,13 +81,22 @@ function LoginInner() {
   }
 
   async function googleSignIn() {
+    setLoading(true);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+        queryParams: {
+          // Always let the guest choose an account instead of silently reusing
+          // the Google account that is already active in their browser.
+          prompt: "select_account",
+        },
       },
     });
-    if (error) toast.error(error.message);
+    if (error) {
+      setLoading(false);
+      toast.error(error.message);
+    }
   }
 
   return (
@@ -147,9 +156,15 @@ function LoginInner() {
             <Button
               variant="outline"
               onClick={googleSignIn}
+              disabled={loading}
               className="w-full"
             >
-              <GoogleIcon className="size-4" /> Continue with Google
+              {loading ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <GoogleIcon className="size-4" />
+              )}
+              Continue with Google
             </Button>
           </>
         ) : (

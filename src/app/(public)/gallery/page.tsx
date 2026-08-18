@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { PageHeader } from "@/components/page-header";
+import { GalleryLightbox } from "@/components/gallery-lightbox";
 
 export const metadata = { title: "Gallery" };
 
@@ -27,22 +27,7 @@ export default function GalleryPage() {
         description="A glimpse into the spaces, light, and details that make Mount Patrick a sanctuary."
       />
       <section className="container-page py-16">
-        <div className="grid auto-rows-[220px] grid-flow-row-dense grid-cols-2 gap-4 md:grid-cols-4">
-          {PHOTOS.map((p, i) => (
-            <div
-              key={i}
-              className={`group relative overflow-hidden rounded-2xl shadow-soft ${p.span}`}
-            >
-              <Image
-                src={p.src}
-                alt={p.alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          ))}
-        </div>
+        <GalleryLightbox photos={PHOTOS} />
       </section>
     </>
   );

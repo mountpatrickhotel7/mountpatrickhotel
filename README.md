@@ -34,6 +34,10 @@ Row-Level Security, audit logging, middleware route protection.
 
 See **[docs/SETUP.md](docs/SETUP.md)** for full setup (Supabase, Paystack, Arkesel).
 
+Week 3 architecture and planning artifacts are in **[docs/WEEK-3.md](docs/WEEK-3.md)**, including the
+[Architecture Decision Record](docs/ARCHITECTURE_DECISION_RECORD.md), [ERD](docs/ERD.md), and
+[API Schema](docs/API_SCHEMA.md).
+
 ```bash
 npm install
 cp .env.example .env.local   # fill in your keys

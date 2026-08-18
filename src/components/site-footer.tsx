@@ -66,7 +66,11 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} {HOTEL.name}. All rights reserved.</p>
-          <p>Check-in {HOTEL.checkInTime} · Check-out {HOTEL.checkOutTime}</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-foreground">Terms of Service</Link>
+            <p>Check-in {HOTEL.checkInTime} · Check-out {HOTEL.checkOutTime}</p>
+          </div>
         </div>
       </div>
     </footer>
