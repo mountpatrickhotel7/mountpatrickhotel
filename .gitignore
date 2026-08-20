@@ -23,8 +23,10 @@
 # misc
 .DS_Store
 *.pem
+mountpatrickhotel.txt
 
 # debug
+.codex-dev.*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
