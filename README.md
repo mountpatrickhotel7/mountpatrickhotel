@@ -36,7 +36,8 @@ See **[docs/SETUP.md](docs/SETUP.md)** for full setup (Supabase, Paystack, Arkes
 
 Week 3 architecture and planning artifacts are in **[docs/WEEK-3.md](docs/WEEK-3.md)**, including the
 [Architecture Decision Record](docs/ARCHITECTURE_DECISION_RECORD.md), [ERD](docs/ERD.md), and
-[API Schema](docs/API_SCHEMA.md).
+[API Schema](docs/API_SCHEMA.md). The Week 4 sprint submission checklist, demo script, test report
+summary, and Sprint 2 backlog are in **[docs/WEEK-4.md](docs/WEEK-4.md)**.
 
 ```bash
 npm install

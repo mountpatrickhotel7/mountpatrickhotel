@@ -11,11 +11,15 @@ import { type BookingQrPayload } from "@/lib/qr";
  * the DB lookup + ID verification + single-use status at check-in.
  */
 function secret(): string {
-  return (
-    process.env.QR_SECRET ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    "insecure-dev-qr-secret"
-  );
+  const value = process.env.QR_SECRET?.trim();
+  if (
+    !value ||
+    value.length < 32 ||
+    /^(change-me|replace-me|your-|insecure)/i.test(value)
+  ) {
+    throw new Error("QR_SECRET must be a dedicated random secret of at least 32 characters");
+  }
+  return value;
 }
 
 function sign(ref: string): string {

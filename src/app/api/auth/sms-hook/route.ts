@@ -12,20 +12,27 @@ import { sendSms } from "@/lib/services/sms";
  * formatted "v1,whsec_<base64>".
  */
 export async function POST(request: Request) {
-  const raw = await request.text();
   const secret = process.env.SEND_SMS_HOOK_SECRET;
 
-  if (secret) {
-    try {
-      const wh = new Webhook(secret.replace("v1,whsec_", ""));
-      wh.verify(raw, {
-        "webhook-id": request.headers.get("webhook-id") ?? "",
-        "webhook-timestamp": request.headers.get("webhook-timestamp") ?? "",
-        "webhook-signature": request.headers.get("webhook-signature") ?? "",
-      });
-    } catch {
-      return NextResponse.json({ error: "invalid signature" }, { status: 401 });
-    }
+  if (
+    !secret?.startsWith("v1,whsec_") ||
+    secret.length < 32 ||
+    /(change-me|replace-with|your-)/i.test(secret)
+  ) {
+    console.error("SMS hook is disabled: SEND_SMS_HOOK_SECRET is missing or invalid");
+    return NextResponse.json({ error: "sms hook unavailable" }, { status: 503 });
+  }
+
+  const raw = await request.text();
+  try {
+    const wh = new Webhook(secret.slice("v1,whsec_".length));
+    wh.verify(raw, {
+      "webhook-id": request.headers.get("webhook-id") ?? "",
+      "webhook-timestamp": request.headers.get("webhook-timestamp") ?? "",
+      "webhook-signature": request.headers.get("webhook-signature") ?? "",
+    });
+  } catch {
+    return NextResponse.json({ error: "invalid signature" }, { status: 401 });
   }
 
   let body: { user?: { phone?: string }; sms?: { otp?: string } };

@@ -1,0 +1,864 @@
+openapi: 3.1.0
+info:
+  title: Mount Patrick Hotel API
+  version: Week 3 MVP contract
+  description: >
+    API contract for the Mount Patrick Hotel booking and hotel-operations system.
+    Authentication is provided by the Supabase session cookie unless an endpoint
+    is marked public, webhook, callback, or cron. Authorization is enforced by
+    server-side role checks and database Row-Level Security.
+
+servers:
+  - url: /api
+
+security:
+  - SupabaseSession: []
+
+paths:
+  /reports:
+    get:
+      summary: Download an operations report
+      description: Generates a daily, weekly, or monthly report as PDF, CSV, or Excel.
+      security:
+        - SupabaseSession: []
+      x-access: Admin/Owner
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [daily, weekly, monthly]
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [pdf, csv, excel]
+      responses:
+        "200":
+          description: Report file download.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /bookings/{reference}/receipt:
+    get:
+      summary: Download a booking receipt
+      security:
+        - SupabaseSession: []
+      x-access: Booking owner or staff
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      responses:
+        "200":
+          description: PDF receipt.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /payments/paystack/webhook:
+    post:
+      summary: Receive Paystack webhook events
+      security:
+        - PaystackSignature: []
+      x-access: Paystack signature
+      parameters:
+        - name: x-paystack-signature
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Webhook accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [received]
+                properties:
+                  received:
+                    type: boolean
+                    const: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /payments/paystack/callback:
+    get:
+      summary: Handle Paystack redirect callback
+      security: []
+      x-access: Paystack redirect
+      parameters:
+        - name: reference
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "302":
+          description: Redirects to booking confirmation or error page.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /auth/sms-hook:
+    post:
+      summary: Handle Supabase Send SMS hook
+      security:
+        - SupabaseHookSignature: []
+      x-access: Supabase signed hook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: SMS hook response with delivery data.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /cron/keep-alive:
+    get:
+      summary: Keep the Supabase project warm
+      security:
+        - CronSecret: []
+      x-access: Vercel Cron secret
+      responses:
+        "200":
+          description: Keep-alive completed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ok]
+                properties:
+                  ok:
+                    type: boolean
+                    const: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /rooms/available:
+    get:
+      summary: Search available rooms
+      description: Planned endpoint. Existing server actions may provide equivalent behavior first.
+      security: []
+      x-access: Public
+      parameters:
+        - name: checkIn
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: checkOut
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: guests
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: roomType
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/RoomType"
+      responses:
+        "200":
+          description: Matching available rooms.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [rooms]
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Room"
+
+  /bookings:
+    post:
+      summary: Create a booking
+      description: Planned endpoint. Booking creation must re-check availability before confirming the reservation.
+      security:
+        - SupabaseSession: []
+        - {}
+      x-access: Guest or public checkout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId, checkIn, checkOut, guestsCount, guest, paymentMode]
+              properties:
+                roomId:
+                  type: string
+                  format: uuid
+                checkIn:
+                  type: string
+                  format: date
+                checkOut:
+                  type: string
+                  format: date
+                guestsCount:
+                  type: integer
+                  minimum: 1
+                guest:
+                  $ref: "#/components/schemas/BookingGuest"
+                paymentMode:
+                  $ref: "#/components/schemas/PaymentMode"
+      responses:
+        "201":
+          description: Booking created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking, paymentUrl]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+                  paymentUrl:
+                    type: string
+                    format: uri
+                    nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "409":
+          description: Room is no longer available.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /bookings/{reference}:
+    get:
+      summary: Get booking details
+      security:
+        - SupabaseSession: []
+      x-access: Booking owner or staff
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      responses:
+        "200":
+          description: Booking details.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking, room, payments]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+                  room:
+                    $ref: "#/components/schemas/Room"
+                  payments:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Payment"
+
+    patch:
+      summary: Update booking fields
+      security:
+        - SupabaseSession: []
+      x-access: Booking owner or staff
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  $ref: "#/components/schemas/BookingStatus"
+                notes:
+                  type: string
+      responses:
+        "200":
+          description: Updated booking.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+
+  /bookings/{reference}/cancel:
+    post:
+      summary: Cancel a booking
+      security:
+        - SupabaseSession: []
+      x-access: Booking owner or staff
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+      responses:
+        "200":
+          description: Cancelled booking.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+
+  /reception/bookings/{reference}/check-in:
+    post:
+      summary: Check in a guest
+      security:
+        - SupabaseSession: []
+      x-access: Receptionist/Admin/Owner
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [identification]
+              properties:
+                identification:
+                  type: object
+                  required: [fullName, idType, idNumber]
+                  properties:
+                    fullName:
+                      type: string
+                    phone:
+                      type: string
+                    idType:
+                      $ref: "#/components/schemas/IdType"
+                    idNumber:
+                      type: string
+      responses:
+        "200":
+          description: Guest checked in.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking, identification]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+                  identification:
+                    $ref: "#/components/schemas/GuestIdentification"
+
+  /reception/bookings/{reference}/check-out:
+    post:
+      summary: Check out a guest
+      security:
+        - SupabaseSession: []
+      x-access: Receptionist/Admin/Owner
+      parameters:
+        - $ref: "#/components/parameters/BookingReference"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paymentMethod:
+                  $ref: "#/components/schemas/PaymentMethod"
+                amount:
+                  type: number
+                  minimum: 0
+      responses:
+        "200":
+          description: Guest checked out.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [booking, payment]
+                properties:
+                  booking:
+                    $ref: "#/components/schemas/Booking"
+                  payment:
+                    oneOf:
+                      - $ref: "#/components/schemas/Payment"
+                      - type: "null"
+
+  /admin/rooms:
+    post:
+      summary: Create a room
+      security:
+        - SupabaseSession: []
+      x-access: Admin/Owner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomNumber, roomType, capacity, pricePerNight, amenities]
+              properties:
+                roomNumber:
+                  type: string
+                roomType:
+                  $ref: "#/components/schemas/RoomType"
+                capacity:
+                  type: integer
+                  minimum: 1
+                pricePerNight:
+                  type: number
+                  minimum: 0
+                amenities:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: Room created.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [room]
+                properties:
+                  room:
+                    $ref: "#/components/schemas/Room"
+
+  /admin/rooms/{id}:
+    patch:
+      summary: Update a room
+      security:
+        - SupabaseSession: []
+      x-access: Admin/Owner
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomUpdate"
+      responses:
+        "200":
+          description: Room updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [room]
+                properties:
+                  room:
+                    $ref: "#/components/schemas/Room"
+
+  /admin/audit-logs:
+    get:
+      summary: List audit logs
+      security:
+        - SupabaseSession: []
+      x-access: Admin/Owner
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Audit logs.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [logs]
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AuditLog"
+
+components:
+  securitySchemes:
+    SupabaseSession:
+      type: apiKey
+      in: cookie
+      name: sb-access-token
+      description: Supabase-authenticated session cookie.
+    PaystackSignature:
+      type: apiKey
+      in: header
+      name: x-paystack-signature
+    SupabaseHookSignature:
+      type: apiKey
+      in: header
+      name: svix-signature
+    CronSecret:
+      type: http
+      scheme: bearer
+
+  parameters:
+    BookingReference:
+      name: reference
+      in: path
+      required: true
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: Missing or invalid authentication.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Forbidden:
+      description: Authenticated user is not allowed to access this resource.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Optional human-readable detail.
+
+    Room:
+      type: object
+      required:
+        - id
+        - room_number
+        - room_type
+        - capacity
+        - price_per_night
+        - status
+        - is_active
+      properties:
+        id:
+          type: string
+          format: uuid
+        room_number:
+          type: string
+        room_type:
+          $ref: "#/components/schemas/RoomType"
+        capacity:
+          type: integer
+        price_per_night:
+          type: number
+        status:
+          $ref: "#/components/schemas/RoomStatus"
+        is_active:
+          type: boolean
+
+    Booking:
+      type: object
+      required:
+        - id
+        - reference
+        - room_id
+        - guest_id
+        - check_in
+        - check_out
+        - guests_count
+        - total_amount
+        - currency
+        - payment_mode
+        - status
+        - source
+      properties:
+        id:
+          type: string
+          format: uuid
+        reference:
+          type: string
+        room_id:
+          type: string
+          format: uuid
+        guest_id:
+          type: string
+          format: uuid
+          nullable: true
+        check_in:
+          type: string
+          format: date
+        check_out:
+          type: string
+          format: date
+        guests_count:
+          type: integer
+        total_amount:
+          type: number
+        currency:
+          type: string
+          default: GHS
+        payment_mode:
+          $ref: "#/components/schemas/PaymentMode"
+        status:
+          $ref: "#/components/schemas/BookingStatus"
+        source:
+          type: string
+          enum: [online, walk_in]
+
+    Payment:
+      type: object
+      required:
+        - id
+        - booking_id
+        - method
+        - amount
+        - status
+        - provider_reference
+        - paid_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        booking_id:
+          type: string
+          format: uuid
+        method:
+          $ref: "#/components/schemas/PaymentMethod"
+        amount:
+          type: number
+        status:
+          type: string
+          enum: [pending, success, failed]
+        provider_reference:
+          type: string
+          nullable: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+
+    GuestIdentification:
+      type: object
+      required: [id, booking_id, full_name, phone, id_type, id_number]
+      properties:
+        id:
+          type: string
+          format: uuid
+        booking_id:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        id_type:
+          $ref: "#/components/schemas/IdType"
+        id_number:
+          type: string
+
+    AuditLog:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        actor_id:
+          type: string
+          format: uuid
+          nullable: true
+        action:
+          type: string
+        entity:
+          type: string
+          nullable: true
+        entity_id:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+
+    BookingGuest:
+      type: object
+      required: [name, phone, email]
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+
+    RoomUpdate:
+      type: object
+      properties:
+        room_number:
+          type: string
+        room_type:
+          $ref: "#/components/schemas/RoomType"
+        capacity:
+          type: integer
+          minimum: 1
+        price_per_night:
+          type: number
+          minimum: 0
+        status:
+          $ref: "#/components/schemas/RoomStatus"
+        amenities:
+          type: array
+          items:
+            type: string
+        is_active:
+          type: boolean
+
+    RoomType:
+      type: string
+      enum:
+        - Standard
+        - Deluxe
+        - Executive
+        - Suite
+        - Presidential Suite
+
+    RoomStatus:
+      type: string
+      enum:
+        - Available
+        - Reserved
+        - Occupied
+        - Cleaning
+        - Maintenance
+        - Out of Service
+
+    BookingStatus:
+      type: string
+      enum:
+        - Pending
+        - Awaiting Payment
+        - Reserved
+        - Confirmed
+        - Checked-In
+        - Checked-Out
+        - Cancelled
+        - No Show
+
+    PaymentMode:
+      type: string
+      enum:
+        - pay_now
+        - pay_at_hotel
+
+    PaymentMethod:
+      type: string
+      enum:
+        - paystack
+        - cash
+        - momo
+        - card
+        - bank
+
+    IdType:
+      type: string
+      enum:
+        - Ghana Card
+        - Passport
+        - Driver's License
+
+x-contract-rules:
+  - Dates use ISO calendar format, YYYY-MM-DD.
+  - Currency is GHS for the MVP.
+  - Booking creation must re-check availability inside the database transaction or RPC.
+  - Booking creation must be safe to retry with an idempotency key.
+  - Payment webhooks must verify the provider signature.
+  - Payment webhooks must be idempotent by provider reference.
+  - Error responses must not expose service-role keys, provider secrets, or sensitive identification images.
+  - Every staff mutation and report generation must record an audit event.

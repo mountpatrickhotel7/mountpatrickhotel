@@ -1,8 +1,8 @@
-import { describe, it, expect, beforeAll } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { signQrPayload, verifyQrPayload } from "./qr-sign";
 
-beforeAll(() => {
-  process.env.QR_SECRET = "test-secret-key";
+beforeEach(() => {
+  process.env.QR_SECRET = "test-only-qr-secret-that-is-long-enough";
 });
 
 const data = {
@@ -47,5 +47,16 @@ describe("signQrPayload / verifyQrPayload", () => {
     expect(v.ref).toBe("MP-7K2P9Q");
     expect(v.manual).toBe(true);
     expect(v.valid).toBe(true);
+  });
+
+  it("refuses to sign when QR_SECRET is missing", () => {
+    delete process.env.QR_SECRET;
+    expect(() => signQrPayload(data)).toThrow(/QR_SECRET/);
+  });
+
+  it("refuses to reuse the Supabase service role key", () => {
+    delete process.env.QR_SECRET;
+    process.env.SUPABASE_SERVICE_ROLE_KEY = "service-role-key-that-would-previously-have-been-used";
+    expect(() => signQrPayload(data)).toThrow(/QR_SECRET/);
   });
 });

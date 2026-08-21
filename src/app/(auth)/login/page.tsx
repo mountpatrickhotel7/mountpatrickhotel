@@ -24,11 +24,12 @@ import {
 } from "@/components/ui/input-otp";
 import { GoogleIcon } from "@/components/google-icon";
 import { normalizeGhanaMsisdn } from "@/lib/phone";
+import { safeInternalPath } from "@/lib/safe-redirect";
 
 function LoginInner() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get("next") || "/account";
+  const next = safeInternalPath(params.get("next"));
   const supabase = createClient();
 
   const [step, setStep] = React.useState<"phone" | "otp">("phone");
